@@ -1,0 +1,975 @@
+{
+  "info": {
+    "name": "Job Application Management System",
+    "description": "Postman collection for the Job Application Management System backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "jobFieldId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "companyId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "recruiterId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "applicantId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "jobApplicationId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "interviewId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "nationalId",
+      "value": "1199980056789012",
+      "type": "string"
+    },
+    {
+      "key": "submittedApplicationId",
+      "value": ""
+    },
+    {
+      "key": "shortlistedApplicationId",
+      "value": ""
+    },
+    {
+      "key": "interviewedApplicationId",
+      "value": ""
+    },
+    {
+      "key": "freeDate",
+      "value": ""
+    },
+    {
+      "key": "conflictDate",
+      "value": ""
+    },
+    {
+      "key": "conflictRecruiterId",
+      "value": ""
+    },
+    {
+      "key": "newNationalId",
+      "value": ""
+    },
+    {
+      "key": "applicantNationalId",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "A2 - Job Fields CRUD",
+      "item": [
+        {
+          "name": "A2 - Save JobField",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Software Development\"\n}"
+            },
+            "url": "{{baseUrl}}/api/job-fields/save"
+          }
+        },
+        {
+          "name": "A2 - Get All JobFields",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/job-fields/all"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const rows = pm.response.json();",
+                  "if (rows.length > 0) {",
+                  "  pm.collectionVariables.set('jobFieldId', rows[0].id);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "A2 - Get JobField By Id",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/job-fields/{{jobFieldId}}"
+          }
+        },
+        {
+          "name": "A2 - Update JobField",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Software Development Updated\"\n}"
+            },
+            "url": "{{baseUrl}}/api/job-fields/update/{{jobFieldId}}"
+          }
+        },
+        {
+          "name": "A2 - Delete JobField",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/job-fields/delete/{{jobFieldId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "A2 - Companies CRUD",
+      "item": [
+        {
+          "name": "A2 - Save Company",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"companyCode\": 1001,\n  \"name\": \"Tech Solutions Ltd\"\n}"
+            },
+            "url": "{{baseUrl}}/api/companies/save"
+          }
+        },
+        {
+          "name": "A2 - Get All Companies",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/companies/all"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const rows = pm.response.json();",
+                  "if (rows.length > 0) {",
+                  "  pm.collectionVariables.set('companyId', rows[0].id);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "A2 - Get Company By Id",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/companies/{{companyId}}"
+          }
+        },
+        {
+          "name": "A2 - Update Company",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"companyCode\": 1001,\n  \"name\": \"Tech Solutions Updated\"\n}"
+            },
+            "url": "{{baseUrl}}/api/companies/update/{{companyId}}"
+          }
+        },
+        {
+          "name": "A2 - Delete Company",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/companies/delete/{{companyId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "A2 - Recruiters CRUD",
+      "item": [
+        {
+          "name": "A2 - Save Recruiter",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Jean\",\n  \"lastName\": \"Uwimana\",\n  \"email\": \"jean.uwimana@company.com\",\n  \"company\": {\n    \"id\": \"{{companyId}}\"\n  }\n}"
+            },
+            "url": "{{baseUrl}}/api/recruiters/save"
+          }
+        },
+        {
+          "name": "A2 - Get All Recruiters",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/recruiters/all"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const rows = pm.response.json();",
+                  "if (rows.length > 0) {",
+                  "  pm.collectionVariables.set('recruiterId', rows[0].id);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "A2 - Get Recruiter By Id",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/recruiters/{{recruiterId}}"
+          }
+        },
+        {
+          "name": "A2 - Update Recruiter",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Jean\",\n  \"lastName\": \"Uwimana\",\n  \"email\": \"jean.updated@company.com\",\n  \"company\": {\n    \"id\": \"{{companyId}}\"\n  }\n}"
+            },
+            "url": "{{baseUrl}}/api/recruiters/update/{{recruiterId}}"
+          }
+        },
+        {
+          "name": "A2 - Delete Recruiter",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/recruiters/delete/{{recruiterId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "A2 - Applicants CRUD",
+      "item": [
+        {
+          "name": "A2 - Save Applicant",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Brian\",\n  \"lastName\": \"Gisagara\",\n  \"nationalId\": \"{{newNationalId}}\",\n  \"email\": \"brian.gisagara@email.com\",\n  \"phone\": \"0788123456\"\n}"
+            },
+            "url": "{{baseUrl}}/api/applicants/save"
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// nationalId is unique, so every save needs a new one",
+                  "pm.collectionVariables.set('newNationalId', '1' + Date.now());"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "A2 - Get All Applicants",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/applicants/all"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const rows = pm.response.json();",
+                  "if (rows.length > 0) {",
+                  "  pm.collectionVariables.set('applicantId', rows[0].id);",
+                  "  pm.collectionVariables.set('applicantNationalId', rows[0].nationalId);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "A2 - Get Applicant By Id",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/applicants/{{applicantId}}"
+          }
+        },
+        {
+          "name": "A2 - Update Applicant",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Brian\",\n  \"lastName\": \"Gisagara\",\n  \"nationalId\": \"{{applicantNationalId}}\",\n  \"email\": \"brian.updated@email.com\",\n  \"phone\": \"0788123456\"\n}"
+            },
+            "url": "{{baseUrl}}/api/applicants/update/{{applicantId}}"
+          }
+        },
+        {
+          "name": "A2 - Delete Applicant",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/applicants/delete/{{applicantId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "A2 - Job Applications CRUD",
+      "item": [
+        {
+          "name": "A2 - Save JobApplication",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"applicationDate\": \"{{freeDate}}\",\n  \"status\": \"SUBMITTED\",\n  \"jobTitle\": \"Junior Developer\",\n  \"cvFileName\": \"brian_cv.pdf\",\n  \"applicant\": {\n    \"id\": \"{{applicantId}}\"\n  },\n  \"recruiter\": {\n    \"id\": \"{{recruiterId}}\"\n  }\n}"
+            },
+            "url": "{{baseUrl}}/api/job-applications/save"
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// a future date the recruiter is very unlikely to have yet",
+                  "const d = new Date();",
+                  "d.setDate(d.getDate() + 365 + Math.floor(Math.random() * 3000));",
+                  "pm.collectionVariables.set('freeDate', d.toISOString().slice(0, 10));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "A2 - Get All JobApplications",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/job-applications/all"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const rows = pm.response.json();",
+                  "if (rows.length > 0) {",
+                  "  pm.collectionVariables.set('jobApplicationId', rows[0].id);",
+                  "  const submitted = rows.find(r => r.status === 'SUBMITTED');",
+                  "  const shortlisted = rows.find(r => r.status === 'SHORTLISTED');",
+                  "  if (submitted) pm.collectionVariables.set('submittedApplicationId', submitted.id);",
+                  "  if (shortlisted) pm.collectionVariables.set('shortlistedApplicationId', shortlisted.id);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "A2 - Get JobApplication By Id",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/job-applications/{{jobApplicationId}}"
+          }
+        },
+        {
+          "name": "A2 - Update JobApplication",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jobTitle\": \"Junior Developer Updated\",\n  \"cvFileName\": \"brian_cv_v2.pdf\"\n}"
+            },
+            "url": "{{baseUrl}}/api/job-applications/update/{{jobApplicationId}}"
+          }
+        },
+        {
+          "name": "A2 - Delete JobApplication",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/job-applications/delete/{{jobApplicationId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "B1 - Applicants by lastName",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/applicants/by-last-name?lastName=gisagara",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "applicants",
+            "by-last-name"
+          ],
+          "query": [
+            {
+              "key": "lastName",
+              "value": "gisagara"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "B2 - Job applications by status",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/job-applications/by-status?status=SUBMITTED",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "job-applications",
+            "by-status"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "SUBMITTED"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "B3 - Job applications in date range",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/job-applications/between?start=2026-10-01&end=2026-10-31",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "job-applications",
+            "between"
+          ],
+          "query": [
+            {
+              "key": "start",
+              "value": "2026-10-01"
+            },
+            {
+              "key": "end",
+              "value": "2026-10-31"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "C1 - Recruiters by job field",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/recruiters/by-job-field?name=software",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "recruiters",
+            "by-job-field"
+          ],
+          "query": [
+            {
+              "key": "name",
+              "value": "software"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "C2 - Free companies",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/companies/free"
+      }
+    },
+    {
+      "name": "C3 - Job fields nobody holds",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/job-fields/unused"
+      }
+    },
+    {
+      "name": "C4 - Applicants of a recruiter",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/applicants/of-recruiter/{{recruiterId}}"
+      }
+    },
+    {
+      "name": "C4 - Applicants of recruiter (404)",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/applicants/of-recruiter/00000000-0000-0000-0000-000000000000"
+      }
+    },
+    {
+      "name": "D1 - Safe saving (past date - 400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"applicationDate\": \"2020-01-15\",\n  \"status\": \"SUBMITTED\",\n  \"jobTitle\": \"Developer\",\n  \"cvFileName\": \"cv.pdf\",\n  \"applicant\": {\n    \"id\": \"{{applicantId}}\"\n  },\n  \"recruiter\": {\n    \"id\": \"{{recruiterId}}\"\n  }\n}"
+        },
+        "url": "{{baseUrl}}/api/job-applications/save"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 400', () => pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D1 - Safe saving (duplicate date - 409)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"applicationDate\": \"{{conflictDate}}\",\n  \"status\": \"SCREENED\",\n  \"jobTitle\": \"Another Job\",\n  \"cvFileName\": \"cv2.pdf\",\n  \"applicant\": {\n    \"id\": \"{{applicantId}}\"\n  },\n  \"recruiter\": {\n    \"id\": \"{{conflictRecruiterId}}\"\n  }\n}"
+        },
+        "url": "{{baseUrl}}/api/job-applications/save"
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// use a real recruiter + date that already has an application that is not REJECTED",
+              "const url = pm.variables.replaceIn('{{baseUrl}}') + '/api/job-applications/all';",
+              "pm.sendRequest(url, (err, res) => {",
+              "  const today = new Date().toISOString().slice(0, 10);",
+              "  const row = res.json().find(a => a.status !== 'REJECTED' && a.applicationDate >= today && a.recruiter);",
+              "  if (row) {",
+              "    pm.collectionVariables.set('conflictDate', row.applicationDate);",
+              "    pm.collectionVariables.set('conflictRecruiterId', row.recruiter.id);",
+              "  }",
+              "});"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 409', () => pm.response.to.have.status(409));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D2 - Status flow (success)",
+      "request": {
+        "method": "PATCH",
+        "url": {
+          "raw": "{{baseUrl}}/api/job-applications/{{submittedApplicationId}}/status?status=SCREENED",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "job-applications",
+            "{{submittedApplicationId}}",
+            "status"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "SCREENED"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "D2 - Status flow (invalid - 400)",
+      "request": {
+        "method": "PATCH",
+        "url": {
+          "raw": "{{baseUrl}}/api/job-applications/{{shortlistedApplicationId}}/status?status=SUBMITTED",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "job-applications",
+            "{{shortlistedApplicationId}}",
+            "status"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "SUBMITTED"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 400', () => pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D3 - Add job field to recruiter",
+      "request": {
+        "method": "PUT",
+        "url": "{{baseUrl}}/api/recruiters/{{recruiterId}}/job-fields/{{jobFieldId}}"
+      }
+    },
+    {
+      "name": "D3 - Add job field (already has - 409)",
+      "request": {
+        "method": "PUT",
+        "url": "{{baseUrl}}/api/recruiters/{{recruiterId}}/job-fields/{{jobFieldId}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 409', () => pm.response.to.have.status(409));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D4 - Move recruiter to another company",
+      "request": {
+        "method": "PATCH",
+        "url": {
+          "raw": "{{baseUrl}}/api/recruiters/{{recruiterId}}/company?companyCode=1004",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "recruiters",
+            "{{recruiterId}}",
+            "company"
+          ],
+          "query": [
+            {
+              "key": "companyCode",
+              "value": "1004"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "E1 - Write an interview",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"interviewType\": \"Technical\",\n  \"feedback\": \"Strong Java skills, weak on SQL\",\n  \"score\": 78\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/interviews/save?jobApplicationId={{shortlistedApplicationId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "interviews",
+            "save"
+          ],
+          "query": [
+            {
+              "key": "jobApplicationId",
+              "value": "{{shortlistedApplicationId}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "E1 - Write interview (not SHORTLISTED - 400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"interviewType\": \"HR\",\n  \"feedback\": \"Good communication\",\n  \"score\": 70\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/interviews/save?jobApplicationId={{submittedApplicationId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "interviews",
+            "save"
+          ],
+          "query": [
+            {
+              "key": "jobApplicationId",
+              "value": "{{submittedApplicationId}}"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 400', () => pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "E2 - Interview history of applicant",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/interviews/applicant/{{nationalId}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const rows = pm.response.json();",
+              "if (rows.length > 0) {",
+              "  pm.collectionVariables.set('interviewId', rows[0].id);",
+              "  pm.collectionVariables.set('interviewedApplicationId', rows[0].jobApplication.id);",
+              "}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "E3 - Delete job application with interviews (409)",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/api/job-applications/delete/{{interviewedApplicationId}}"
+      }
+    },
+    {
+      "name": "E3 - Delete interview",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/api/interviews/delete/{{interviewId}}"
+      }
+    },
+    {
+      "name": "F1 - Job applications per status",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/job-applications/stats/by-status"
+      }
+    },
+    {
+      "name": "F2 - Recruiter is absent (cancel day)",
+      "request": {
+        "method": "PATCH",
+        "url": {
+          "raw": "{{baseUrl}}/api/job-applications/cancel-day?recruiterId={{recruiterId}}&date=2026-10-20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "job-applications",
+            "cancel-day"
+          ],
+          "query": [
+            {
+              "key": "recruiterId",
+              "value": "{{recruiterId}}"
+            },
+            {
+              "key": "date",
+              "value": "2026-10-20"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Bonus - Dashboard summary",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/dashboard/summary"
+      }
+    },
+    {
+      "name": "Bonus - Job applications page",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/job-applications/page?page=0&size=5&sort=applicationDate,desc",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "job-applications",
+            "page"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "0"
+            },
+            {
+              "key": "size",
+              "value": "5"
+            },
+            {
+              "key": "sort",
+              "value": "applicationDate,desc"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
